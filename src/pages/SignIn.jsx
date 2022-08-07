@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { IoIosPerson, IoMdLock } from "react-icons/io";
-import { IoMail, IoShieldCheckmarkSharp, IoBrowsers } from "react-icons/io5";
+import {  IoMdLock } from "react-icons/io";
+import { IoMail} from "react-icons/io5";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,13 @@ const SignIn = () => {
 
   const { email, password} = formData;
 
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
   };
@@ -18,7 +25,6 @@ const SignIn = () => {
     <div className="form ">
       <div className="header">Sign In</div>
       <form onSubmit={onSubmit} className="formData">
-        
         <div className="formGroup">
           <label htmlFor="email">
             <IoMail />
@@ -29,10 +35,12 @@ const SignIn = () => {
             id="email"
             name="email"
             placeholder="Email"
+            value={email}
+            onChange={onChange}
             required
           ></input>
         </div>
-        
+
         <div className="formGroup">
           <label htmlFor="password">
             <IoMdLock />
@@ -43,6 +51,8 @@ const SignIn = () => {
             id="password"
             name="password"
             placeholder="Password"
+            value={password}
+            onChange={onChange}
             required
           ></input>
         </div>

@@ -8,11 +8,18 @@ const SignUp = () => {
         name:"",
         email:"",
         password:"",
-        image:{},
+        password2:"",
         bio:""
     })
 
-    const {name, email, password,image, bio} = formData
+    const {name, email, password, bio, password2} = formData
+
+    const onChange = (e) => {
+      setFormData(prevState =>({
+        ...prevState,
+        [e.target.id]: e.target.value
+      }))
+    }
 
 
     const onSubmit = (e) => {
@@ -34,6 +41,8 @@ const SignUp = () => {
               type="text"
               placeholder="User Name"
               required
+              value={name}
+              onChange={onChange}
             ></input>
           </div>
           <div className="formGroup">
@@ -46,6 +55,8 @@ const SignUp = () => {
               id="email"
               name="email"
               placeholder="Email"
+              value={email}
+              onChange={onChange}
               required
             ></input>
           </div>
@@ -59,6 +70,8 @@ const SignUp = () => {
               id="bio"
               name="bio"
               placeholder="I am a ..."
+              onChange={onChange}
+              value={bio}
             ></input>
           </div>
           <div className="formGroup">
@@ -71,19 +84,23 @@ const SignUp = () => {
               id="password"
               name="password"
               placeholder="Password"
+              value={password}
+              onChange={onChange}
               required
             ></input>
           </div>
           <div className="formGroup">
-            <label htmlFor="con-password">
+            <label htmlFor="password2">
               <IoShieldCheckmarkSharp />
             </label>
             <input
-              className="con-password"
+              className="password2"
               type="password"
-              id="con-password"
-              name="con-password"
+              id="password2"
+              name="password2"
               placeholder="Confirm Password"
+              value={password2}
+              onChange={onChange}
               required
             ></input>
           </div>
