@@ -1,13 +1,87 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    margin: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    color: #2f2e41;
+}
+
+.bg-color-g{
+    background-color: #00BFA6;
+}
+.bg-color-i {
+    background-color: #2f2e41;
+}
+.bg-color-i-o:hover{
+    background-color: #2f2e41ce;
+}
+.bg-color-gy {
+    background-color: #e6e6e6;
+}
+.color-g {
+    color: #00BFA6;
+}
+.color-i {
+    color: #2f2e41;
+}
+.color-gy {
+    color: #e6e6e6;
+}
+
+.nav-link:hover{
+    border-bottom: 2px solid#2f2e41;
+}
+
+.header {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 80vh;
+}
+
+input {
+    padding: 2;
+    outline: none;
+
+}
+.formGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    color: #00BFA6;
+    font-size: 20px;
+    margin-top: 12px;
+}
+.submit-btn {
+    padding: 4px;
+    border: #00BFA6 2px solid;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #00BFA6;
+}
+.submit-btn:hover {
+    color: white;
+    background-color: #00BFA6;
+}
+input::placeholder{
+    color: rgba(128, 128, 128, 0.514);
+}
+input:focus{
+    border-bottom: #00BFA6 2px solid;
 }
