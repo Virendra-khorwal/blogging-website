@@ -1,14 +1,20 @@
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import {  IoMdLock } from "react-icons/io";
 import { IoMail} from "react-icons/io5";
+import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
+
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  
 
   const { email, password} = formData;
+  const navigate = useNavigate()
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -17,8 +23,18 @@ const SignIn = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const auth = getAuth()
+
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      if(userCredential.user){
+        navigate('/')
+      }
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -61,9 +77,8 @@ const SignIn = () => {
           Sign In
         </button>
       </form>
-      {/* 
-        ADD Google Auth
-        */}
+      <OAuth/>
+      <Link to='/signup' >Sign Up Instead</Link>
     </div>
   );
 };

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { IoIosPerson, IoMdLock } from "react-icons/io";
-import { IoMail, IoShieldCheckmarkSharp, IoBrowsers } from "react-icons/io5";
+import { IoMail, IoBrowsers } from "react-icons/io5";
+import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db } from "../firebase.config";
+
 
 const SignUp = () => {
 
@@ -8,11 +14,13 @@ const SignUp = () => {
         name:"",
         email:"",
         password:"",
-        password2:"",
-        bio:""
+        bio:"",
+        avatar:""
     })
 
-    const {name, email, password, bio, password2} = formData
+    const navigate = useNavigate();
+
+    const {name, email, password, bio} = formData
 
     const onChange = (e) => {
       setFormData(prevState =>({
@@ -22,8 +30,30 @@ const SignUp = () => {
     }
 
 
-    const onSubmit = (e) => {
-        e.preventDefault()
+    const onSubmit = async (e) => {
+        e.preventDefault() 
+        try {
+          const auth = getAuth()
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+
+          const user = userCredential.user
+
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            bio: bio,
+          })
+
+          const formDataCopy = {...formData}
+          delete formDataCopy.password
+          formDataCopy.timestamp = serverTimestamp()
+
+          await setDoc(doc(db, 'users', user.uid), formDataCopy)
+
+          navigate('/')
+
+        } catch (error) {
+          console.log(error)
+        }
     }
 
     return (
@@ -89,29 +119,15 @@ const SignUp = () => {
               required
             ></input>
           </div>
-          <div className="formGroup">
-            <label htmlFor="password2">
-              <IoShieldCheckmarkSharp />
-            </label>
-            <input
-              className="password2"
-              type="password"
-              id="password2"
-              name="password2"
-              placeholder="Confirm Password"
-              value={password2}
-              onChange={onChange}
-              required
-            ></input>
-          </div>
+          
 
           <button className="submit-btn rounded" type="submit">
             Sign Up
           </button>
         </form>
-        {/* 
-        ADD Google Auth
-        */}
+        <OAuth />
+  
+        <Link to="/signin">Sign In Instead</Link>
       </div>
     );
 }

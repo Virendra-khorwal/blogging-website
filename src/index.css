@@ -85,3 +85,19 @@ input::placeholder{
 input:focus{
     border-bottom: #00BFA6 2px solid;
 }
+
+.user-display {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.user-display img {
+    width: 50px;
+}
+
+.menu-item:hover {
+    color: #00BFA6;
+    background-color: #2f2e41;
+}
