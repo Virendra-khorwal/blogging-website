@@ -35,7 +35,8 @@ function App() {
             </Route>
             
             <Route path="/signin" element={<SignIn/>} />
-            <Route path="/editdoc" element={<EditDoc/>} />
+            <Route path="/vk/editdoc" element={<EditDoc/>} />
+            <Route path="/:user/myblogs" element={<UserBlogs/>} />
           </Routes>
         </div>
         

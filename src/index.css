@@ -15,8 +15,17 @@ body {
 .bg-color-g{
     background-color: #00BFA6;
 }
+.bg-color-g-o {
+    background-color: #75ecdc88;
+}
+.bg-color-g-hover:hover {
+    background-color: #00BFA6;
+}
 .bg-color-i {
     background-color: #2f2e41;
+}
+.bg-color-i-l {
+    background-color: #8a89a0b4;
 }
 .bg-color-i-o:hover{
     background-color: #2f2e41ce;
@@ -39,7 +48,6 @@ body {
 }
 
 .header {
-    text-align: center;
     font-size: 40px;
     font-weight: bold;
 }
@@ -100,4 +108,13 @@ input:focus{
 .menu-item:hover {
     color: #00BFA6;
     background-color: #2f2e41;
+}
+
+.card:hover {
+background-color: #2f2e41;
+color: white;
+}
+
+input:disabled{
+    background-color: transparent;
 }

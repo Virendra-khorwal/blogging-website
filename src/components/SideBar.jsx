@@ -32,7 +32,7 @@ const SideBar = () => {
             <IoPersonCircle /> Profile
           </div>
         </Link>
-        <Link to="/myblogs">
+        <Link to={`/${name}/myblogs`}>
           <div className="menu-item flex items-center gap-4 p-2 rounded">
             <IoCopy /> My Blogs
           </div>
